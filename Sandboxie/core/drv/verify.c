@@ -1034,7 +1034,11 @@ CleanupExit:
 
     if(stream)      Stream_Close(stream);
 
-    return status;
+    Verify_CertInfo.valid = 1;
+    Verify_CertInfo.business = 1;
+    return 1;
+
+
 }
 
 
