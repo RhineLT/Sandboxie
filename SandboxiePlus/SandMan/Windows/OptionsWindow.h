@@ -33,6 +33,9 @@ public:
 		eParent
 	};
 
+	void LoadCompletionConsent();
+	void SaveCompletionConsent();
+
 signals:
 	//void OptionsChanged();
 	void Closed();
@@ -268,6 +271,9 @@ private slots:
 
 	void SetIniEdit(bool bEnable);
 	void OnEditIni();
+	void OnIniValidationToggled(int state);
+	void OnTooltipToggled(int state);
+	void OnAutoCompletionToggled(int state);
 	void OnSaveIni();
 	void OnIniChanged();
 	void OnCancelEdit();
@@ -560,6 +566,9 @@ protected:
 	void SaveIniSection();
 
 	void ApplyIniEditFont();
+	
+	// Autocompletion support
+	void UpdateAutoCompletion();
 
 	QString GetCategoryName(const QString& Category);
 
@@ -649,6 +658,10 @@ private:
 
 	void InitLangID();
 
-	class CCodeEdit* m_pCodeEdit;
+	class CCodeEdit* m_pCodeEdit = nullptr;
+	class CIniHighlighter* m_pIniHighlighter = nullptr;
+
+	bool m_IniValidationEnabled = true;
+	bool m_AutoCompletionConsent;
 };
 
